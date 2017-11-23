@@ -2,7 +2,9 @@ const express = require('express');
 const parser = require('body-parser').urlencoded({ extended: false });
 const uid = require('uid');
 const reload = require('reload');
+const multer = require('multer');
 
+const upload = multer({ dest: './public' });
 const app = express();
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
@@ -30,6 +32,11 @@ app.post('/singer', parser, (req, res) => {
 
 app.get('/demoupload', (req, res) => {
     res.render('demoupload');
+});
+
+app.post('/demoupload', upload.single('singerImage'), (req, res) => {
+    // res.render('demoupload');
+    res.send('Thanh cong');
 });
 
 app.listen(3000, () => console.log('Server started'));
