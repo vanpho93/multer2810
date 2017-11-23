@@ -7,10 +7,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     </head>
     <body>
-        <form action="/singer" method="POST">
+        <form action="/singer" method="POST" enctype="multipart/form-data">
             <input type="text" placeholder="Name" name="name">
             <br><br>
-            <input type="text" placeholder="Image" name="image">
+            <input type="file" name="image">
             <br><br>
             <button>Add new singer</button>
         </form>
