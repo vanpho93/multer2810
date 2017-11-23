@@ -28,6 +28,10 @@ app.post('/singer', parser, (req, res) => {
    res.redirect('/singer');
 });
 
+app.get('/demoupload', (req, res) => {
+    res.render('demoupload');
+});
+
 app.listen(3000, () => console.log('Server started'));
 
 reload(app);
