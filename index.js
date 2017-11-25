@@ -33,11 +33,18 @@ app.get('/remove/:id', (req, res) => {
     res.redirect('/singer');
 });
 
-app.post('/singer', upload.single('image'), (req, res) => {
-   const { name } = req.body;
-   const image = req.file.filename;
-   singers.push({ id: uid(), name, image });
-   res.redirect('/singer');
+const saveFile = upload.single('image');
+
+app.post('/singer', (req, res) => {
+    saveFile(req, res, err => {
+        if (err) {
+            return res.send('Bi loi roi: ' + err.message);
+        }
+        const { name } = req.body;
+        const image = req.file.filename;
+        singers.push({ id: uid(), name, image });
+        res.redirect('/singer');
+    });
 });
 
 /*
