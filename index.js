@@ -47,6 +47,13 @@ app.post('/singer', (req, res) => {
     });
 });
 
+const saveFiles = upload.array('image');
+
+app.post('/singers', saveFiles, (req, res) => {
+    const filenames = req.files.map(file => file.filename);
+    res.send(filenames);
+});
+
 /*
     app.get('/demoupload', (req, res) => {
         res.render('demoupload');
