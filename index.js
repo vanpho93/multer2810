@@ -4,13 +4,7 @@ const uid = require('uid');
 const reload = require('reload');
 const multer = require('multer');
 const fs = require('fs');
-
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => cb(null, './public'),
-    filename: (req, file, cb) => cb(null, uid() + file.originalname)
-});
-
-const upload = multer({ storage });
+const upload = require('./uploadConfig');
 
 const app = express();
 app.set('view engine', 'ejs');
