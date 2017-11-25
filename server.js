@@ -18,9 +18,19 @@ const myMiddleware = (req, res, next) => {
 
 app.use(myMiddleware);
 
+
 app.get('/', (req, res) => {
     res.send('Hello ' + req.user.name);
+    // next();
 });
+
+app.get('/', (req, res) => {
+    res.send('Hello 2' + req.user.name);
+});
+
+app.get('/:name', (req, res) => {
+    res.send('Hello ' + req.params.name);
+})
 
 app.get('/a', (req, res) => {
     res.send('a');
@@ -28,6 +38,10 @@ app.get('/a', (req, res) => {
 
 app.get('/b', (req, res) => {
     res.send('b');
+});
+
+app.use((err, req, res, next) => {
+// handle error
 });
 
 app.listen(3000, () => console.log('Server started!'));
